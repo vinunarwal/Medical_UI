@@ -184,7 +184,7 @@ const PatientInfo = () => {
                                     </td>
                                     <td>
                                         <input
-                                            type="tel"
+                                            type="number"
                                             className="form-control"
                                             id="phoneNumber"
                                             name="phoneNumber"
