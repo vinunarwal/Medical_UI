@@ -115,7 +115,7 @@ const Test = () => {
                     )}
                 </div>
             </div>
-            <MyAccordion/>
+            <MyAccordion />
         </div>
     );
 };
