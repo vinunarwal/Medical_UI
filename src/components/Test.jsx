@@ -123,7 +123,7 @@ const Test = () => {
                                 <tbody>
                                     {medicalTests[selectedTestIndex].tests.map((item, index) => (
                                         <tr key={index}>
-                                            <td>{item.testName}</td>
+                                            <td>{item.testName}</td> 
                                             <td>
                                                 <input
                                                     className='form-control'
