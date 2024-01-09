@@ -4,7 +4,8 @@ import MyAccordion from './MyAccordion';
 
 const Test = () => {
     const [formData, setFormData] = useState({
-        gender: ''
+        gender: '',
+        resultText: ''
     });
 
     const handleChange = (e) => {
@@ -15,9 +16,28 @@ const Test = () => {
     };
 
     const [selectedTestIndex, setSelectedTestIndex] = useState(null);
+    const [resultTexts, setResultTexts] = useState([]);
 
     const handleTestSelection = (e) => {
         setSelectedTestIndex(e.target.value !== "" ? parseInt(e.target.value, 10) : null);
+    };
+    const handleSaveResult = () => {
+        if (selectedTestIndex !== null && formData.resultText.trim() !== "") {
+            const category = medicalTests[selectedTestIndex].category;
+            const existingCategoryIndex = resultTexts.findIndex(result => result.category === category);
+
+            if (existingCategoryIndex !== -1) {
+                // If category already exists, update the existing category
+                const updatedResultTexts = [...resultTexts];
+                updatedResultTexts[existingCategoryIndex].results.push(formData.resultText);
+                setResultTexts(updatedResultTexts);
+            } else {
+                // If category does not exist, create a new category
+                setResultTexts([...resultTexts, { category, results: [formData.resultText] }]);
+            }
+
+            setFormData({ ...formData, resultText: '' });
+        }
     };
 
     return (
@@ -104,18 +124,29 @@ const Test = () => {
                                     {medicalTests[selectedTestIndex].tests.map((item, index) => (
                                         <tr key={index}>
                                             <td>{item.testName}</td>
-                                            <td><input className='form-control' type='text'/>{item.result}</td>
+                                            <td>
+                                                <input
+                                                    className='form-control'
+                                                    type='text'
+                                                    // value={formData.resultText}
+                                                    onChange={(e) => setFormData({ ...formData, resultText: e.target.value })}
+                                                />
+                                                {item.result}
+                                            </td>
                                             <td>{formData.gender === 'male' ? item.testRefValueM : item.testRefValueF}</td>
                                             <td>{item.unit}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
+                            <button className="btn btn-primary" onClick={handleSaveResult}>
+                                Save Result
+                            </button>
                         </div>
                     )}
                 </div>
             </div>
-            <MyAccordion />
+            <MyAccordion resultTexts={resultTexts} />
         </div>
     );
 };

@@ -1,24 +1,26 @@
 import React from 'react';
 import { Accordion } from 'react-bootstrap';
 
-const MyAccordion = () => {
+const MyAccordion = ({ resultTexts }) => {
     return (
-        <Accordion>
-            <Accordion.Item eventKey="0">
-                <Accordion.Header>Accordion Item #1</Accordion.Header>
-                <Accordion.Body>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-                <Accordion.Header>Accordion Item #2</Accordion.Header>
-                <Accordion.Body>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Accordion.Body>
-            </Accordion.Item>
-        </Accordion>
+        <div>
+            <Accordion>
+                {resultTexts.map((category, index) => (
+                    <Accordion.Item key={index} eventKey={index.toString()}>
+                        <Accordion.Header>
+                            <p>Category: {category.category}</p>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <ul>
+                                {category.results.map((result, resultIndex) => (
+                                    <li key={resultIndex}>{result}</li>
+                                ))}
+                            </ul>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
+        </div>
     );
 };
 
