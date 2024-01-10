@@ -1,4 +1,5 @@
 import React from 'react';
+import {Namedt} from '../data/Namedata';
 
 function Hero() {
    return (
@@ -7,19 +8,24 @@ function Hero() {
             <div className='row hero_section flex justify-around mt-32'>
                <div className='col-sm-3 patient text-base'>
 
+               {Namedt.map((item, index) => (
                   <div className='patient_details'>
-                     <h1 className='patient_name font-bold text-xl'>Yash M. Patel</h1>
-                     <p>Age : 21 Years</p>
-                     <p>Sex : Male</p>
-                     <p>PID : 555</p>
+                     <h1 className='patient_name font-bold text-xl'>{item.Name}</h1>
+                     <p>Age :{item.Age}</p>
+                     <p>Sex : {item.Sex}</p>
+                     <p>PID : {item.PID}</p>
                   </div>
+                  ))}
                </div>
+               
 
+               {Namedt.map((item, index) => (
                <div className='col-sm-4 samples border-r-2 border-l-2'>
                   <p className='font-bold text-lg'>Sample Collected At :</p>
-                  <p>125, Shivam, Bungalow, S G Road,<span>Mumbai</span></p>
-                  <h2 className='text-lg pt-1'>Ref. By: <span className='font-bold'> Dr. Hiren Shah</span></h2>
+                  <p>{item.Address}<span>{item.City}</span></p>
+                  <h2 className='text-lg pt-1'>Ref. By: <span className='font-bold'> {item.Dr}</span></h2>
                </div>
+               ))}
 
                <div className='col-sm-5 test_dates'>
 

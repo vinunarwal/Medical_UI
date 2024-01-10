@@ -1,12 +1,12 @@
-import React from 'react'
-import stamp from './Img/stamp.png'
+import React from 'react';
+import stamp from './Img/stamp.png';
 
 function Foot() {
    return (
       <>
          <div className='Footer pt-4'>
             <div className='container'>
-               <div className='row justify-center items-baseline'>
+               <div className='row justify-center items-end'>
                   <div className='col-sm-5'>
                      <div className='text-center'>
                         <p className='text-base'><span className='block font-bold'>Medical Lab Technician</span>
@@ -34,4 +34,4 @@ function Foot() {
    );
 }
 
-export default Foot
+export default Foot;
