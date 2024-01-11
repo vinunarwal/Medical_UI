@@ -17,25 +17,38 @@ const Test = () => {
 
     const [selectedTestIndex, setSelectedTestIndex] = useState(null);
     const [resultTexts, setResultTexts] = useState([]);
+    const [testResults, setTestResults] = useState([]);
 
     const handleTestSelection = (e) => {
         setSelectedTestIndex(e.target.value !== "" ? parseInt(e.target.value, 10) : null);
+        setTestResults([]); // Clear testResults when a new test is selected
     };
+
+    const handleTestResultChange = (testIndex, result) => {
+        const updatedResults = [...testResults];
+        updatedResults[testIndex] = result;
+        setTestResults(updatedResults);
+    };
+
     const handleSaveResult = () => {
-        if (selectedTestIndex !== null && formData.resultText.trim() !== "") {
+        if (selectedTestIndex !== null && testResults.length > 0) {
             const category = medicalTests[selectedTestIndex].category;
-            const existingCategoryIndex = resultTexts.findIndex(result => result.category === category);
+
+            const updatedResultTexts = [...resultTexts];
+            const existingCategoryIndex = updatedResultTexts.findIndex(result => result.category === category);
 
             if (existingCategoryIndex !== -1) {
                 // If category already exists, update the existing category
-                const updatedResultTexts = [...resultTexts];
-                updatedResultTexts[existingCategoryIndex].results.push(formData.resultText);
-                setResultTexts(updatedResultTexts);
+                updatedResultTexts[existingCategoryIndex].results.push(...testResults);
             } else {
                 // If category does not exist, create a new category
-                setResultTexts([...resultTexts, { category, results: [formData.resultText] }]);
+                updatedResultTexts.push({ category, results: [...testResults] });
             }
 
+            setResultTexts(updatedResultTexts);
+            setTestResults([]); // Clear testResults after saving
+
+            // Clear input fields for the next selection
             setFormData({ ...formData, resultText: '' });
         }
     };
@@ -123,13 +136,13 @@ const Test = () => {
                                 <tbody>
                                     {medicalTests[selectedTestIndex].tests.map((item, index) => (
                                         <tr key={index}>
-                                            <td>{item.testName}</td> 
+                                            <td>{item.testName}</td>
                                             <td>
                                                 <input
                                                     className='form-control'
                                                     type='text'
-                                                    // value={formData.resultText}
-                                                    onChange={(e) => setFormData({ ...formData, resultText: e.target.value })}
+                                                    value={testResults[index] || ''}
+                                                    onChange={(e) => handleTestResultChange(index, e.target.value)}
                                                 />
                                                 {item.result}
                                             </td>

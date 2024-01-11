@@ -13,7 +13,8 @@ const MyAccordion = ({ resultTexts }) => {
                         <Accordion.Body>
                             <ul>
                                 {category.results.map((result, resultIndex) => (
-                                    <li key={resultIndex}>{result}</li>
+                                    // <li key={resultIndex}>{result}</li>
+                                    result ? <li key={resultIndex}>{result}</li> : null
                                 ))}
                             </ul>
                         </Accordion.Body>
