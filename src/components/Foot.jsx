@@ -1,32 +1,25 @@
-import React from 'react';
-import stamp from './Img/stamp.png';
+import React from 'react'
+import {doctor_data } from '../data/FootData';
 
 function Foot() {
    return (
       <>
          <div className='Footer pt-4'>
             <div className='container'>
-               <div className='row justify-center items-end'>
-                  <div className='col-sm-5'>
-                     <div className='text-center'>
-                        <p className='text-base'><span className='block font-bold'>Medical Lab Technician</span>
-                           (DMLT, BMLT)</p>
+
+               <div className='row justify-center items-baseline'>
+               {doctor_data.map((item, index) => (
+                     <div key={index} className='col-sm-4'>
+                        <div className='text-center grid justify-center'>
+                           <img src={item.img} className='stamp w-28'></img>
+                           <p className='text-base'><span className='block font-bold'>{item.name}</span>
+                              {item.degree}</p>
+                        </div>
                      </div>
-                  </div>
-                  <div className='col-sm-3'>
-                     <div className='text-center'>
-                        <p className='text-base'><span className='block font-bold'>Dr. Payal Shah</span>
-                           (MD, Pathologist)</p>
-                     </div>
-                  </div>
-                  <div className='col-sm-4'>
-                     <div className='text-center grid justify-center'>
-                        <img src={stamp} alt='Not Found' className='stamp w-28'></img>
-                        <p className='text-base'><span className='block font-bold'>Dr. Vimal Shah</span>
-                           (MD, Pathologist)</p>
-                     </div>
-                  </div>
+                  ))}
+
                </div>
+
                <hr className='mt-2' />
             </div>
          </div>
@@ -34,4 +27,4 @@ function Foot() {
    );
 }
 
-export default Foot;
+export default Foot

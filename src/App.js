@@ -1,18 +1,11 @@
-import './index.css';
-import Report from './components/Report';
-import Foot from './components/Foot';
-import Hero from './components/Hero';
-import './components/styles/tailwind.css';
-
+import Medi from './components/Medi';
 
 function App() {
-  return (
-    <>
-      <Hero />
-      <Report />
-      <Foot />
-    </>
-  );
+    return (
+        <>
+            <Medi />
+        </>
+    );
 }
 
 export default App;
