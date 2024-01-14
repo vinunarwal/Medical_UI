@@ -25,13 +25,17 @@ const Test = () => {
     };
 
     const handleTestResultChange = (testIndex, result) => {
+        console.log("testIndex, result", testIndex, result)
         const updatedResults = [...testResults];
         updatedResults[testIndex] = result;
+        // const kuchb = { ...updatedResults, [testIndex]: result };
         setTestResults(updatedResults);
+        console.log("This is updateResults", updatedResults)
     };
 
     const handleSaveResult = () => {
         if (selectedTestIndex !== null && testResults.length > 0) {
+            console.log('This is medicaTest', medicalTests);
             const category = medicalTests[selectedTestIndex].category;
 
             const updatedResultTexts = [...resultTexts];
@@ -51,6 +55,15 @@ const Test = () => {
             // Clear input fields for the next selection
             setFormData({ ...formData, resultText: '' });
         }
+    };
+    const extractNumericPart = (value) => {
+        // Check if value is defined before applying the regular expression
+        if (value !== undefined) {
+            const numericPart = value.match(/\d+/);
+            return numericPart ? numericPart[0] : '';
+        }
+
+        return ''; // Return an empty string if value is undefined
     };
 
     return (
@@ -146,7 +159,11 @@ const Test = () => {
                                                 />
                                                 {item.result}
                                             </td>
-                                            <td>{formData.gender === 'male' ? item.testRefValueM : item.testRefValueF}</td>
+                                            <td>
+                                                {extractNumericPart(formData.gender === 'male' ? item.testRefValueM : item.testRefValueF)}
+                                                {' - '}
+                                                {extractNumericPart(formData.gender === 'female' ? item.testRefValueM : item.testRefValueF)}
+                                            </td>
                                             <td>{item.unit}</td>
                                         </tr>
                                     ))}
