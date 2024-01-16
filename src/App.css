@@ -1,0 +1,29 @@
+.print-preview-button {
+  @media print {
+    display: none;
+  }
+}
+
+.print-component {
+  display: none;
+
+  @media print {
+    display: table;
+
+    .table-footer>tr>td {
+      text-align: center;
+      background-color: grey;
+      color: white;
+    }
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.value span{
+  padding-right: 5px;
+  font-weight: bold;
+}
