@@ -11,7 +11,7 @@ function Foot() {
                {doctor_data.map((item, index) => (
                      <div key={index} className='col-sm-4'>
                         <div className='text-center grid justify-center'>
-                           <img src={item.img} className='stamp w-28'></img>
+                           <img src={item.img}  className='stamp w-28'></img>
                            <p className='text-base'><span className='block font-bold'>{item.name}</span>
                               {item.degree}</p>
                         </div>
