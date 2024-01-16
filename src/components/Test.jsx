@@ -11,12 +11,12 @@ const Test = () => {
         resultText: ''
     });
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
+    // const handleChange = (e) => {
+    //     setFormData({
+    //         ...formData,
+    //         [e.target.name]: e.target.value
+    //     });
+    // };
 
     const [selectedTestIndex, setSelectedTestIndex] = useState(null);
     const [resultTestData, setResultTestData] = useState();

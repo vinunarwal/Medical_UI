@@ -10,6 +10,7 @@ function App() {
         <div className="App">
             <PatientInfo/>
             <Test/>
+            <Medi/>
         </div>
     );
 }

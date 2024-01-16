@@ -1,6 +1,6 @@
 // import logo from './logo-.png';
 import '../App.css';
-import Foot from './Foot';
+// import Foot from './Foot';
 const PrintComponent = ({ children }) => {
     const printAction = () => {
         window.print()
