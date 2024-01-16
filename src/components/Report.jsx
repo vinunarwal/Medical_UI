@@ -29,6 +29,10 @@ const Report = () => {
                      <p>{item.result}</p>
                   </div>
                   <div className='col-sm-3 value'>
+                  <span className={item.result < item.lowest_value ? 'low' : item.result > item.highest_value ? 'high' : ''}>
+                              {item.result < item.lowest_value ? 'Low' : item.result > item.highest_value ? 'High' : ''}
+                           </span>
+                           {item.lowest_value}-{item.highest_value}
                      <p>{item.value}</p>
                   </div>
                   <div className='col-sm-3 unit'>

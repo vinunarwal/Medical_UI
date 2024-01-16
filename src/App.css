@@ -22,3 +22,8 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.value span{
+  padding-right: 5px;
+  font-weight: bold;
+}
