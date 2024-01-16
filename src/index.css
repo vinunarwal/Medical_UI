@@ -1,3 +1,91 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+
+
+
+
+@media (max-width: 760px) {
+  /* Styles to apply for screens with a width of 760 pixels or less */
+  .Foott {
+    flex-direction: column; /* Change the flex direction to column */
+    align-items: center; /* Center items in the flex container */
+  }
+
+  .col-md-5 {
+    width: 100%; /* Make the width 100% for full-width on smaller screens */
+    text-align: center; /* Center text in the column */
+    margin-bottom: 20px; /* Add some spacing between columns */
+  }
+
+  .col-md-7 {
+    width: 100%; /* Make the width 100% for full-width on smaller screens */
+    text-align: center; /* Center text in the column */
+  }
+
+  .col-md-4 {
+    width: 100%; /* Make the width 100% for full-width on smaller screens */
+    margin-bottom: 20px; /* Add some spacing between columns */
+  }
+}
+
+
+
+/* Existing styles */
+
+/* Media query for screens with a width of 760 pixels or less */
+@media (max-width: 760px) {
+  .row {
+    flex-direction: column; /* Change the flex direction to column for smaller screens */
+  }
+
+  .col-md-3 {
+    width: 100%; /* Make columns take up full width on smaller screens */
+    margin-bottom: 15px; /* Add some spacing between columns */
+  }
+}
+
+
+
+/* Existing styles */
+
+/* Media query for screens with a width of 760 pixels or less */
+@media (max-width: 760px) {
+  .hero_section {
+    flex-direction: column; /* Change the flex direction to column for smaller screens */
+    align-items: center; /* Center items in the flex container */
+  }
+
+  .col-md-4 {
+    width: 100%; /* Make columns take up full width on smaller screens */
+    margin-bottom: 20px; /* Add some spacing between columns */
+  }
+
+  .patient_name {
+    font-size: 1.5rem; /* Adjust font size for patient name on smaller screens */
+  }
+
+  .leading-8 {
+    font-size: 0.8rem; /* Adjust font size for other text on smaller screens */
+  }
+}
