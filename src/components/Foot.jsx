@@ -1,9 +1,14 @@
 import React from 'react'
 import {doctor_data } from '../data/FootData';
+import { useSelector } from "react-redux";
+
 
 function Foot() {
+   const reportData = useSelector((state) => state.reportData);
+   console.log("This is reportData=>", reportData);
+
    return (
-      <>
+      (<>
          <div className='Footer pt-4'>
             <div className='container'>
 
@@ -23,7 +28,7 @@ function Foot() {
                <hr className='mt-2' />
             </div>
          </div>
-      </>
+      </>)
    );
 }
 

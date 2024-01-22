@@ -1,21 +1,37 @@
-import {createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    gender : "NA"
+    patientData : 
+        {
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        age: '',
+        gender: 'NA',
+        email: '',
+        phoneNumber: '',
+        zipCode: '',
+        medicalHistory: '',
+        referringDoctor: '',
+        collection: '',
+    },
+    reportData: []
 }
 
 export const formSlice = createSlice({
     name: "formData",
     initialState,
     reducers: {
-        setData: (state, action) => {
-            const formData = {
-                gender: action.payload,
-            }
-            state.gender = formData
+        setPatientData: (state, action) => {
+            state.patientData[action.payload.name] = action.payload.value
         },
+        addReportData: (state, action) => {
+            // state.reportData.push(action.payload);
+            // const data = action.payload.filter((data) => data);
+            state.reportData = action.payload.filter((data) => data);;
+        }
     }
 });
 
-export const { setData } = formSlice.actions;
+export const { setPatientData, addReportData } = formSlice.actions;
 export default formSlice.reducer;

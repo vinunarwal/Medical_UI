@@ -7,9 +7,12 @@ import Medi from './components/Medi';
 
 function App() {
     return (
-        <div className="App">
+        <div className="m-3 flex flex-row justify-around h-screen">
+            <div className='flex flex-column print-d-none'>
             <PatientInfo/>
             <Test/>
+            </div>
+                 
             <Medi/>
         </div>
     );

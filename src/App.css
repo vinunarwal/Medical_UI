@@ -1,4 +1,4 @@
-.print-preview-button {
+/* .print-preview-button {
   @media print {
     display: none;
   }
@@ -26,4 +26,10 @@ body {
 .value span{
   padding-right: 5px;
   font-weight: bold;
+} */
+
+.print-d-none{
+  @media print {
+    display: none;
+  }
 }
