@@ -10,8 +10,8 @@ const PrintComponent = ({ children }) => {
             
 
             <thead>
-                <header className='h-32 '>
-                <button className={"print-preview-button print-d-none"} onClick={printAction}>Print</button>
+            <header className='h-32 d-flex justify-content-center align-items-center'>
+                <button className={" h-10 px-7 me-8 btn btn-primary print-preview-button print-d-none"} onClick={printAction}>Print</button>
                 </header>
             </thead>
             <tbody>
