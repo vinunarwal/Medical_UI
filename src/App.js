@@ -7,11 +7,13 @@ import Medi from './components/Medi';
 
 function App() {
     return (
-        <div className="App">
-            <PatientInfo/>
-            <Test/>
-            <Medi/>
-        </div>
+        <>
+            <div className="App">
+                <PatientInfo />
+                <Test />
+            </div>
+            <Medi />
+        </>
     );
 }
 

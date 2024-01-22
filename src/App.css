@@ -3,6 +3,10 @@
     display: none;
   }
 }
+.App{
+  display: flex;
+  justify-content: space-between;
+}
 
 .print-component {
   display: none;
@@ -19,8 +23,8 @@
 }
 
 body {
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
 }
 
 .value span{
