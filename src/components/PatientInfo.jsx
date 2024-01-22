@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './patient.css';
 import {useDispatch} from "react-redux";
-import { setData } from '../redux/formDataSlice';
+import { setPatientData } from '../redux/formDataSlice';
 
 const PatientInfo = () => {
     const [formData, setFormData] = useState({
         firstName: '',
-        lastName: '',
         dateOfBirth: '',
         age: '',
         gender: '',
@@ -23,23 +22,20 @@ const PatientInfo = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        dispatch(setPatientData({value,name}));
         setFormData({
             ...formData,
             [name]: value,
         });
-        if (name === "gender"){
-            dispatch(setData(value));
-        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // dispatch(setData(formData.gender));
         console.log(formData);
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container print-d-none">
             <div className="card">
                 <div className="card-body">
                     <h2 className="card-title">Patient Information</h2>
@@ -49,7 +45,7 @@ const PatientInfo = () => {
                                 <tr>
                                     <td>
                                         <label htmlFor="firstName" className="form-label">
-                                            First Name
+                                            Name
                                         </label>
                                     </td>
                                     <td>
@@ -59,40 +55,6 @@ const PatientInfo = () => {
                                             id="firstName"
                                             name="firstName"
                                             value={formData.firstName}
-                                            onChange={handleChange}
-                                            required
-                                        />
-                                    </td>
-                                    <td>
-                                        <label htmlFor="lastName" className="form-label">
-                                            Last Name
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="lastName"
-                                            name="lastName"
-                                            value={formData.lastName}
-                                            onChange={handleChange}
-                                            required
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label htmlFor="dateOfBirth" className="form-label">
-                                            Date of Birth
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            id="dateOfBirth"
-                                            name="dateOfBirth"
-                                            value={formData.dateOfBirth}
                                             onChange={handleChange}
                                             required
                                         />
@@ -192,7 +154,7 @@ const PatientInfo = () => {
                                     </td>
                                     <td>
                                         <input
-                                            type="number"
+                                            type="text"
                                             className="form-control"
                                             id="phoneNumber"
                                             name="phoneNumber"
@@ -241,7 +203,7 @@ const PatientInfo = () => {
                                     </td>
                                     {/* </tr> */}
                                     {/* <tr> */}
-                                    <td>
+                                    {/* <td>
                                         <label htmlFor="collection" className="form-label">
                                             Collection
                                         </label>
@@ -258,9 +220,8 @@ const PatientInfo = () => {
                                             <option value="">Select a Collection</option>
                                             <option value="Collection A">Collection A</option>
                                             <option value="Collection B">Collection B</option>
-                                            {/* Add more collection names as needed */}
                                         </select>
-                                    </td>
+                                    </td> */}
                                 </tr>
                                 <tr>
                                     <td>

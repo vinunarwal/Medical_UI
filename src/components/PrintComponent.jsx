@@ -7,11 +7,11 @@ const PrintComponent = ({ children }) => {
     }
     return (
         <>
-            <button className={"print-preview-button"} onClick={printAction}>{ }</button>
+            
 
             <thead>
-                <header className='h-32'>
-
+                <header className='h-32 '>
+                <button className={"print-preview-button print-d-none"} onClick={printAction}>Print</button>
                 </header>
             </thead>
             <tbody>
