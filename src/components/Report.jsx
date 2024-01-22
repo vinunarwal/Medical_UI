@@ -8,7 +8,7 @@ const Report = () => {
 //   console.log("!!!!! redux reportData=>", reportData);
 
   return (
-    ((reportData.length > 0) && <div className="container">
+    ((reportData.length > 0) && <div className="container" style={{ minHeight: '50vh' }}>
       <div className="report">
         <table className="table">
           <thead>
