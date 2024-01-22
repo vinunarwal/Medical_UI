@@ -7,6 +7,7 @@ const Test = () => {
   const dispatch = useDispatch();
 
     const gender = useSelector(state => state?.patientData?.gender);
+    console.log("gender",gender)
 
 
     const [selectedTestIndex, setSelectedTestIndex] = useState(null);
@@ -89,7 +90,7 @@ const Test = () => {
                                     {medicalTests[selectedTestIndex].tests.map(
                                         (item, index) => {
                                             const result = testResults && testResults[selectedTestIndex] && testResults[selectedTestIndex][item?.testName]?.result;
-                                            const refValue = ((gender.gender === 'male' ? item.testRefValueM : item.testRefValueF) || item.testRefValue);
+                                            const refValue = ((gender === 'male' ? item.testRefValueM : item.testRefValueF) || item.testRefValue);
 
                                             return (
                                                 <tr key={index}>
