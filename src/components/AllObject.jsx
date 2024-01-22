@@ -145,21 +145,21 @@ export const medicalTests = [
                 testRefValue: "(3.5-5.0 gm/dL)",
                 unit: "gm/dL",
             },
-            {
-                testName: "Serum Total Protein",
-                testRefValue: "(9 - 23 mg/dl)",
-                unit: "gm/dL",
-            },
-            {
-                testName: "Serum Total Protein",
-                testRefValue: "(9 - 23 mg/dl)",
-                unit: "gm/dL",
-            },
-            {
-                testName: "Serum Total Protein",
-                testRefValue: "(9 - 23 mg/dl)",
-                unit: "gm/dL",
-            },
+            // {
+            //     testName: "Serum Total Protein",
+            //     testRefValue: "(9 - 23 mg/dl)",
+            //     unit: "gm/dL",
+            // },
+            // {
+            //     testName: "Serum Total Protein",
+            //     testRefValue: "(9 - 23 mg/dl)",
+            //     unit: "gm/dL",
+            // },
+            // {
+            //     testName: "Serum Total Protein",
+            //     testRefValue: "(9 - 23 mg/dl)",
+            //     unit: "gm/dL",
+            // },
         ],
     },
     {
