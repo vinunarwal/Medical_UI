@@ -4,17 +4,21 @@ import './App.css';
 import PatientInfo from './components/PatientInfo';
 import Test from './components/Test';
 import Medi from './components/Medi';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import DbData from './components/DbData';
+import Home from './components/Home';
+// import DbData from './components/DbData';
 
 function App() {
     return (
-        <div className="m-3 flex flex-row justify-around h-screen">
-            <div className='flex flex-column print-d-none'>
-            <PatientInfo/>
-            <Test/>
-            </div>
-                 
-            <Medi/>
-        </div>
+        <>
+            {/* <Router> */}
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/dbdata' element={<DbData />} />
+                </Routes>
+            {/* </Router> */}
+        </>
     );
 }
 

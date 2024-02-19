@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { medicalTests } from './AllObject';
 import MyAccordion from './MyAccordion';
 import { useSelector, useDispatch } from 'react-redux';
 import { addReportData } from '../redux/formDataSlice';
+import { Link } from 'react-router-dom';
+import axios from "axios";
 const Test = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const gender = useSelector(state => state?.patientData?.gender);
-    console.log("gender",gender)
-
+    console.log("gender", gender)
+    const patientData = useSelector((state) => state.patientData);
 
     const [selectedTestIndex, setSelectedTestIndex] = useState(null);
     const [resultTestData, setResultTestData] = useState();
     const [testResults, setTestResults] = useState([]);
+    const [info, setinfo] = useState(patientData);
 
     const handleTestSelection = (e) => {
         setSelectedTestIndex(e.target.value !== "" ? parseInt(e.target.value, 10) : null);
         // setTestResults([]); // Clear testResults when a new test is selected
     };
 
-    
+
     const handleTestResultChange = (testIndex, result, item, selectedTestIndex, refValue, category) => {
         // console.log("item index=>",item, testIndex, selectedTestIndex, refValue)
         const updatedResults = [...testResults];
@@ -41,21 +44,38 @@ const Test = () => {
         console.log("This is updateResults", updatedResults)
     };
 
+    useEffect(() => {
+        setinfo(patientData);
+    }, [patientData]);
 
+    const baseUrl = "http://localhost:3001/user";
 
-    const handleSaveResult = () => {
+    // const handleSaveResult = () => {
 
-        dispatch(addReportData(testResults))
-        setResultTestData(testResults)
+    //     dispatch(addReportData(testResults))
+    //     setResultTestData(testResults)
+    //     axios.post(baseUrl, testResults).then((response) => {
+    //         setResultTestData(response.data);
+    //     });
+    // };
+    const handleSaveResult = async () => {
+        const combinedData = { info, testResults };
+        console.log("CombinedData", combinedData, testResults);
+        try {
+            const response = await axios.post(baseUrl, combinedData);
+            console.log("Response:", response.data);
+            dispatch(addReportData(testResults));
+        } catch (error) {
+            console.error("Error saving data:", error);
+        }
     };
-    
 
     return (
         (gender !== "NA") && <div className="container mt-5 print-d-none">
             <div className="card">
                 <div className="card-body">
                     <h2>Medical Test Selection</h2>
-                  
+
                     <label htmlFor="testSelect">Select a Medical Test:</label>
                     <select
                         id="testSelect"
@@ -71,7 +91,7 @@ const Test = () => {
                         ))}
                     </select>
 
-                  
+
                     {selectedTestIndex !== null && (
                         <div>
                             <h3 style={{ textAlign: "center" }}>
@@ -127,6 +147,9 @@ const Test = () => {
                             <button className="btn btn-primary" onClick={handleSaveResult}>
                                 Save Result
                             </button>
+                            <Link to="/dbdata" className="btn btn-primary">
+                                DbData
+                            </Link>
                         </div>
                     )}
                 </div>

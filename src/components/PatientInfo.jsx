@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './patient.css';
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { setPatientData } from '../redux/formDataSlice';
 
 const PatientInfo = () => {
     const [formData, setFormData] = useState({
         firstName: '',
+        patientName: '',
         dateOfBirth: '',
         age: '',
         gender: '',
@@ -22,7 +23,7 @@ const PatientInfo = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        dispatch(setPatientData({value,name}));
+        dispatch(setPatientData({ value, name }));
         setFormData({
             ...formData,
             [name]: value,
