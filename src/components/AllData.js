@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Registration from './Registration';
 import Login from './Login';
-//import Homepage from './Homepage';
 import Home from './Home'
 
 function AllData() {

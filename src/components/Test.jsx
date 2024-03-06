@@ -22,13 +22,11 @@ const Test = () => {
       // setTestResults([]); // Clear testResults when a new test is selected
    };
 
-
    const handleTestResultChange = (testIndex, result, item, selectedTestIndex, refValue, category) => {
-      // console.log("item index=>",item, testIndex, selectedTestIndex, refValue)
       const updatedResults = [...testResults];
 
       if (updatedResults) {
-         // console.log("updatedResults[selectedTestIndex]=>",updatedResults[selectedTestIndex]);
+
          updatedResults[selectedTestIndex] = {
             ...(updatedResults[selectedTestIndex] ? updatedResults[selectedTestIndex] : {}),
             [item.testName]: {
@@ -48,16 +46,8 @@ const Test = () => {
       setinfo(patientData);
    }, [patientData]);
 
-   const baseUrl = "http://localhost:3001/user";
+   const baseUrl = "http://localhost:5000/user";
 
-   // const handleSaveResult = () => {
-
-   //     dispatch(addReportData(testResults))
-   //     setResultTestData(testResults)
-   //     axios.post(baseUrl, testResults).then((response) => {
-   //         setResultTestData(response.data);
-   //     });
-   // };
    const handleSaveResult = async () => {
       const combinedData = { info, testResults };
       console.log("CombinedData", combinedData, testResults);
@@ -91,7 +81,6 @@ const Test = () => {
                   ))}
                </select>
 
-
                {selectedTestIndex !== null && (
                   <div>
                      <h3 style={{ textAlign: "center" }}>
@@ -119,7 +108,6 @@ const Test = () => {
                                           <input
                                              className="form-control"
                                              type="text"
-                                             // testResults && testResults[selectedTestIndex] && testResults[selectedTestIndex][item?.testName]?.result
                                              value={result || ''}
                                              onChange={(e) =>
                                                 handleTestResultChange(
@@ -147,14 +135,13 @@ const Test = () => {
                      <button className="btn btn-primary" onClick={handleSaveResult}>
                         Save Result
                      </button>
-                     <Link to="/dbdata" className="btn btn-primary">
+                     {/*<Link to="/dbData" className="btn btn-primary">
                         DbData
-                     </Link>
+                     </Link>*/}
                   </div>
                )}
             </div>
          </div>
-         {/* {resultTestData && <MyAccordion resultData={resultTestData} />} */}
       </div>
    );
 };

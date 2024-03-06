@@ -12,6 +12,8 @@ function LabMemberRegistration({ switchToLoginPage, handleRegister }) {
         e.preventDefault();
         try {
             await handleRegister(username, password, email, labName, labAddress);
+            // Show alert on successful registration
+            window.alert('Registration successful! Please login now.');
         } catch (error) {
             console.error(error.response.data);
             setErrorMessage('Registration failed. Please try again.');
