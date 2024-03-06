@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Medi from "./Medi";
 
-function DbData() {
+function DbData({ onGoBack }) {
    const [userData, setUserData] = useState([]);
    const [showMedi, setshowMedi] = useState(false);
    const [showTable, setShowTable] = useState(false);
@@ -26,9 +26,14 @@ function DbData() {
       console.log("userData", userData);
    };
 
+   const handleGoBack = () => {
+      onGoBack();
+   };
+
    return (
       <>
-         <div className="d-flex justify-content-center mb-5">
+         <div className="d-flex justify-content-center mt-5 gap-4">
+            <button className="btn btn-primary" onClick={handleGoBack}>Go Back</button>
             <button className="btn btn-primary" onClick={handleViewData}>
                View Data
             </button>
@@ -42,7 +47,7 @@ function DbData() {
                            <th>Patient Name</th>
                            <th>Age</th>
                            <th>Gender</th>
-      
+
                         </tr>
                      </thead>
                      <tbody>
@@ -56,7 +61,7 @@ function DbData() {
                                     View report
                                  </button>
                               </td>
-                             
+
                            </tr>
                         ))}
                      </tbody>
