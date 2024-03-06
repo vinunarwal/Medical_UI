@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 function IndividualRegistration({ switchToLoginPage, handleRegister }) {
     const [username, setUsername] = useState('');
@@ -10,8 +11,14 @@ function IndividualRegistration({ switchToLoginPage, handleRegister }) {
         e.preventDefault();
         try {
             await handleRegister(username, password, email);
-            // Show alert on successful registration
-            window.alert('Registration successful! Please login now.');
+            Swal.fire({
+              title: 'Registration successful!',
+              text: 'Please login now.',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then(() => {
+              switchToLoginPage(); 
+            });
         } catch (error) {
             console.error(error.response.data);
             setErrorMessage('Registration failed. Please try again.');

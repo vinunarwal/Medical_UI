@@ -14,14 +14,15 @@ function Home({ handleLogout }) {
                <button onClick={handleLogout} className="bg-red-500 w-28 text-white px-6 py-2 rounded-md mr-4 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-300 ease-in-out">
                   Logout
                </button>
+               <div>
+                  <Link to="/dbData" className="btn btn-primary">View Patient Record</Link>
+               </div>
             </div>
             <PatientInfo />
             <Test />
          </div>
          <Medi />
-         <div>
-            <Link to="/dbData" className="btn btn-primary">View Patient Record</Link>
-         </div>
+
       </div>
    )
 }
