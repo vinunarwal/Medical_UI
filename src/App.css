@@ -1,4 +1,5 @@
-.print-d-none{
+.print-d-none,
+.navbar{
   @media print {
     display: none;
   }
