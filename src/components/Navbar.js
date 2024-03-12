@@ -15,7 +15,7 @@ function Navbar({ handleLogout }) {
                </a>
                <div className="user d-flex align-items-center">
                   <div className="logout-btn">
-                     <button onClick={handleLogoutClick} className="btn btn-danger">log out</button>
+                     <button onClick={handleLogoutClick} className="btn btn-danger">Log Out</button>
                      <Link to="/dbData" className="btn btn-primary ml-4">Patient Record</Link>
 
                   </div>

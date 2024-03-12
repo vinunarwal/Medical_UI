@@ -6,8 +6,9 @@ import Hero from "./Hero";
 import PrintComponent from "./PrintComponent";
 import Report from "./Report";
 import Foot from "./Foot";
+import { Link } from "react-router-dom";
 
-function DbData({ onGoBack }) {
+function DbData() {
    const [userData, setUserData] = useState([]);
    const [selectedUser, setSelectedUser] = useState(null);
    const [showMedi, setshowMedi] = useState(false);
@@ -44,14 +45,15 @@ function DbData({ onGoBack }) {
       }
    };
 
-   const handleGoBack = () => {
-      onGoBack();
-   };
+   //const handleGoBack = () => {
+   //   onGoBack();
+   //};
 
    return (
       <>
+      <div className="">
          <div className="mt-4">
-            <button className="btn btn-primary" onClick={handleGoBack}>Go Back</button>
+            <Link to='/' className="btn btn-primary" >Go Back</Link>
          </div>
          <div className="d-flex justify-content-around">
 
@@ -91,6 +93,7 @@ function DbData({ onGoBack }) {
                <div>{showMedi && <Report />}</div>
                <div>{showMedi && <Foot />}</div>
             </div>
+         </div>
          </div>
       </>
    );
