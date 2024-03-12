@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Registration from './Registration';
 import Login from './Login';
-import Home from './Home'
+import Home from './Home';
 
 function AllData() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,13 +28,16 @@ function AllData() {
         localStorage.setItem('token', response.data.token);
     };
 
-
     const handleLogin = async (username, password) => {
         const response = await axios.post('http://localhost:5000/login',
             { username, password });
         console.log(response.data);
         setIsLoggedIn(true);
         localStorage.setItem('token', response.data.token);
+    };
+
+    const handleForgetPassword = async (username, email) => {
+        console.log("Forget password clicked");
     };
 
     const handleLogout = () => {
@@ -52,14 +55,14 @@ function AllData() {
     };
 
     return (
-        <div className='flex justify-center items-center my-5'>
-            <div className='text-center'>
+        <div className=''>
+            <div className=''>
                 {isLoggedIn ? (
                     <Home handleLogout={handleLogout} />
                 ) : currentPage === 'register' ? (
                     <Registration switchToLoginPage={switchToLoginPage} handleRegister={handleRegister} />
                 ) : (
-                    <Login switchToRegisterPage={switchToRegisterPage} handleLogin={handleLogin} />
+                    <Login switchToRegisterPage={switchToRegisterPage} handleLogin={handleLogin} handleForgetPassword={handleForgetPassword} />
                 )}
             </div>
         </div>

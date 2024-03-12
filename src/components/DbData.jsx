@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Medi from "./Medi";
+import { useDispatch } from "react-redux";
+import { addReportData } from "../redux/formDataSlice";
+import Hero from "./Hero";
+import PrintComponent from "./PrintComponent";
+import Report from "./Report";
+import Foot from "./Foot";
 
 function DbData({ onGoBack }) {
    const [userData, setUserData] = useState([]);
+   const [selectedUser, setSelectedUser] = useState(null);
    const [showMedi, setshowMedi] = useState(false);
-   const [showTable, setShowTable] = useState(false);
+   const dispatch = useDispatch();
 
    const fetchData = async () => {
       try {
@@ -16,14 +22,26 @@ function DbData({ onGoBack }) {
          console.error("Error fetching data:", error);
       }
    };
+
+   useEffect(() => {
+      if (selectedUser && showMedi) {
+         dispatch(addReportData(selectedUser?.report.testResults));
+      }
+      fetchData();
+   }, [selectedUser, showMedi]);
+
    const toggleMedi = () => {
       setshowMedi(!showMedi);
    };
 
-   const handleViewData = () => {
-      fetchData();
-      setShowTable(true);
-      console.log("userData", userData);
+   const handleViewReport = (user) => {
+      setSelectedUser(user);
+      dispatch(addReportData(user?.report.testResults));
+
+      if (!showMedi) {
+         toggleMedi();
+         console.log("selectedUser:", user);
+      }
    };
 
    const handleGoBack = () => {
@@ -32,43 +50,47 @@ function DbData({ onGoBack }) {
 
    return (
       <>
-         <div className="d-flex justify-content-center mt-5 gap-4">
+         <div className="mt-4">
             <button className="btn btn-primary" onClick={handleGoBack}>Go Back</button>
-            <button className="btn btn-primary" onClick={handleViewData}>
-               View Data
-            </button>
          </div>
          <div className="d-flex justify-content-around">
-            {showTable && (
-               <div>
-                  <table className="table">
-                     <thead>
-                        <tr>
-                           <th>Patient Name</th>
-                           <th>Age</th>
-                           <th>Gender</th>
 
+            <div>
+               <table className="table">
+                  <thead>
+                     <tr>
+                        <th>Patient Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {userData.map((user) => (
+                        <tr key={user._id}>
+                           <td>{user?.report?.info?.firstName}</td>
+                           <td>{user?.report?.info?.age}</td>
+                           <td>{user?.report?.info?.gender}</td>
+                           <td>
+                              <button
+                                 className="btn btn-primary"
+                                 onClick={() => handleViewReport(user)}
+                              >
+                                 View report
+                              </button>
+                           </td>
                         </tr>
-                     </thead>
-                     <tbody>
-                        {userData.map((user) => (
-                           <tr key={user._id}>
-                              <td>{user.patientinfo.firstName}</td>
-                              <td>{user.patientinfo.age}</td>
-                              <td>{user.patientinfo.gender}</td>
-                              <td>
-                                 <button className="btn btn-primary" onClick={toggleMedi}>
-                                    View report
-                                 </button>
-                              </td>
-
-                           </tr>
-                        ))}
-                     </tbody>
-                  </table>
+                     ))}
+                  </tbody>
+               </table>
+            </div>
+            <div>
+               <div className=" d-flex justify-content-center">
+                  {showMedi && <PrintComponent user={selectedUser} />}
                </div>
-            )}
-            <div>{showMedi && <Medi />}</div>
+               <div>{showMedi && <Hero user={selectedUser} />}</div>
+               <div>{showMedi && <Report />}</div>
+               <div>{showMedi && <Foot />}</div>
+            </div>
          </div>
       </>
    );

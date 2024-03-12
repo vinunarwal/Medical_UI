@@ -8,9 +8,11 @@ function LabMemberRegistration({ switchToLoginPage, handleRegister }) {
    const [labName, setLabName] = useState('');
    const [labAddress, setLabAddress] = useState('');
    const [errorMessage, setErrorMessage] = useState('');
+   const [isRegistering, setIsRegistering] = useState(false);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
+      setIsRegistering(true);
       try {
          await handleRegister(username, password, email, labName, labAddress);
          Swal.fire({
@@ -19,12 +21,13 @@ function LabMemberRegistration({ switchToLoginPage, handleRegister }) {
             icon: 'success',
             confirmButtonText: 'OK'
          }).then(() => {
-            switchToLoginPage(); 
+            switchToLoginPage();
          });
       } catch (error) {
          console.error(error.response.data);
-         setErrorMessage('Registration failed. Please try again.');
+         setErrorMessage(error.response.data.error || 'Registration failed. Please try again later.');
       }
+      setIsRegistering(false);
    };
 
    return (
@@ -73,8 +76,9 @@ function LabMemberRegistration({ switchToLoginPage, handleRegister }) {
             />
 
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-            <button type="submit" className='bg-blue-500 text-white px-4 py-2 rounded-md w-full'>
-               Register
+            <button type="submit" className='bg-blue-500 text-white px-4 py-2 rounded-md w-full'
+               disabled={isRegistering}>
+               {isRegistering ? 'Wait a moment...' : 'Register'}
             </button>
          </form>
          <p className="mt-4 text-center">Already have an account? <button onClick={switchToLoginPage} className="text-blue-500 font-medium">Login here</button></p>
