@@ -39,7 +39,7 @@ function Hero({ user }) {
                             ))
                         )}
                     </div>
-                    {Namedt.map((item, index) => (
+                    {Namedt.map ((item, index) => (
                         <div className='col-sm-5 samples border-r-2 border-l-2' key={index}>
                             <p className='font-bold text-lg'>Sample Collected At :</p>
                             <p>{item.Address}<span>{item.City}</span></p>
