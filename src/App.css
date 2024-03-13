@@ -1,5 +1,5 @@
 .print-d-none,
-.navbar,
+.nav_print,
 .dbdata{
   @media print {
     display: none;
@@ -13,4 +13,8 @@
   position: relative;
   z-index: 1;
 }
-
+.home_bg{
+  background-image: url(./assests/homebg.avif);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
