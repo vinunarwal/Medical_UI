@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Profile_icon from '../assests/profile_icon.png';
+import Med_icon from '../assests/medical_logo.png';
 
 function Navbar({ handleLogout }) {
    const handleLogoutClick = () => {
@@ -7,38 +9,30 @@ function Navbar({ handleLogout }) {
    };
 
    return (
-      <div>
-         <nav className="navbar navbar-expand-lg navbar navbar-dark bg-gray-700 ">
-            <div className="container d-flex justify-between">
-               <a className="navbar-brand" href="/">
-                  Medical
-               </a>
-               <div className="user d-flex align-items-center">
-                  <div className="logout-btn">
-                     <button onClick={handleLogoutClick} className="btn btn-danger">Log Out</button>
-                     <Link to="/dbData" className="btn btn-primary ml-4">Patient Record</Link>
-
-                  </div>
-                  <div className="ml-4">
-                  <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="30"
-                     height="30"
-                     fill="currentColor"
-                     className="bi bi-person-circle"
-                     viewBox="0 0 16 16"
-                  >
-                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                     <path
-                        fillRule="evenodd"
-                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                     />
-                  </svg>
-                  </div>
+      <nav className="bg-gray-800 shadow-lg nav_print">
+         <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+            <Link to="/" className="flex items-center">
+               <img src={Med_icon} className="w-16 h-14 mr-2" alt="Medical Logo" /> {/* Adjust the width and height here */}
+               <span className="text-white text-lg font-bold tracking-wider uppercase">Medical App</span> {/* Add a text label for the medical logo */}
+            </Link>
+            <div className="flex items-center">
+               <Link
+                  to="/dbData"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out"
+               >
+                  View Records
+               </Link>
+               <button onClick={handleLogoutClick} className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 ml-4 rounded-full shadow-md transition duration-300 ease-in-out">
+                  Log Out
+               </button>
+               <div className="ml-4">
+                  <a href="/">
+                     <img src={Profile_icon} alt="Profile" className="w-10 h-10 rounded-full shadow-md" />
+                  </a>
                </div>
             </div>
-         </nav>
-      </div>
+         </div>
+      </nav>
    );
 }
 

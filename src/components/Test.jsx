@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { medicalTests } from "./AllObject";
-import MyAccordion from "./MyAccordion";
 import { useSelector, useDispatch } from "react-redux";
 import { addReportData } from "../redux/formDataSlice";
 import axios from "axios";

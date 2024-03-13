@@ -45,55 +45,53 @@ function DbData() {
       }
    };
 
-   //const handleGoBack = () => {
-   //   onGoBack();
-   //};
-
    return (
       <>
-      <div className="">
-         <div className="mt-4">
-            <Link to='/' className="btn btn-primary" >Go Back</Link>
-         </div>
-         <div className="d-flex justify-content-around">
-
-            <div>
-               <table className="table">
-                  <thead>
-                     <tr>
-                        <th>Patient Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {userData.map((user) => (
-                        <tr key={user._id}>
-                           <td>{user?.report?.info?.firstName}</td>
-                           <td>{user?.report?.info?.age}</td>
-                           <td>{user?.report?.info?.gender}</td>
-                           <td>
-                              <button
-                                 className="btn btn-primary"
-                                 onClick={() => handleViewReport(user)}
-                              >
-                                 View report
-                              </button>
-                           </td>
+         <div className="container mx-auto px-4 py-8">
+            <div className="flex items-center mb-8">
+               <Link to='/' className="text-blue-500 text-lg">&larr; Go Back</Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div className="overflow-auto">
+                  <table className="table-auto w-full">
+                     <thead>
+                        <tr>
+                           <th className="px-4 py-2">Patient Name</th>
+                           <th className="px-4 py-2">Age</th>
+                           <th className="px-4 py-2">Gender</th>
+                           <th className="px-4 py-2"></th>
                         </tr>
-                     ))}
-                  </tbody>
-               </table>
-            </div>
-            <div>
-               <div className=" d-flex justify-content-center">
-                  {showMedi && <PrintComponent user={selectedUser} />}
+                     </thead>
+                     <tbody>
+                        {userData.map((user) => (
+                           <tr key={user._id} className="border-b">
+                              <td className="px-4 py-2">{user?.report?.info?.firstName}</td>
+                              <td className="px-4 py-2">{user?.report?.info?.age}</td>
+                              <td className="px-4 py-2">{user?.report?.info?.gender}</td>
+                              <td className="px-4 py-2">
+                                 <button
+                                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+                                    onClick={() => handleViewReport(user)}
+                                 >
+                                    View Report
+                                 </button>
+                              </td>
+                           </tr>
+                        ))}
+                     </tbody>
+                  </table>
                </div>
-               <div>{showMedi && <Hero user={selectedUser} />}</div>
-               <div>{showMedi && <Report />}</div>
-               <div>{showMedi && <Foot />}</div>
+               <div>
+                  {showMedi && (
+                     <>
+                        <PrintComponent user={selectedUser} />
+                        <Hero user={selectedUser} />
+                        <Report />
+                        <Foot />
+                     </>
+                  )}
+               </div>
             </div>
-         </div>
          </div>
       </>
    );

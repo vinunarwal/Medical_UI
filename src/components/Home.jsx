@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PatientInfo from "./PatientInfo";
 import Medi from "./Medi";
 import Test from "./Test";
-import DbData from "./DbData";
 import Navbar from "./Navbar";
 
 function Home({ handleLogout }) {
@@ -17,7 +16,6 @@ function Home({ handleLogout }) {
           <Test />
         </div>
         <Medi />
-        {/* <DbData /> */}
       </div>
     </>
   );
