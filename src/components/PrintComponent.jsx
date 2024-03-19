@@ -30,7 +30,7 @@ const PrintComponent = ({ children }) => {
 
     return (
         <>
-            <thead>
+            <thead className='d-flex justify-content-center'>
                 <header className='h-32 d-flex justify-content-center align-items-center'>
                     <button className={" h-10 px-7 me-2 btn btn-primary print-preview-button print-d-none"} onClick={printAction}>Print</button>
                     <button className={" h-10 px-7 btn btn-success print-preview-button print-d-none"} onClick={createPdfAction}>Create PDF</button>
