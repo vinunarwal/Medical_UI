@@ -86,7 +86,7 @@ function Navbar({ handleLogout }) {
             className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 ml-4 rounded-full shadow-md transition duration-300 ease-in-out"
           >
             Log Out
-          </button>
+          </button> 
         </div>
       </div>
     </nav>
