@@ -1,6 +1,7 @@
 .print-d-none,
 .nav_print,
-.dbdata{
+.dbdata,
+.hide_dbdata{
   @media print {
     display: none;
   }
