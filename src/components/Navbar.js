@@ -66,7 +66,7 @@ function Navbar({ handleLogout }) {
             />
           </button>
           {isDropdownOpen && userData && (
-            <div className="dropdown absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10">
+            <div className="dropdown absolute right-0 mt-3 bg-white border border-gray-300 rounded-md shadow-lg z-10">
               <div className="p-2">
                 <h3 className="text-lg font-semibold mb-2">User Details</h3>
                 <p className="mb-1"><strong>Username:</strong> {userData.username}</p>
