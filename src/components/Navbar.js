@@ -1,15 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Profile_icon from "../assests/profile_icon.png";
-import UserDetailsPopup from "./UserDetailsPopup"; // Import the UserDetailsPopup component
+import axios from "axios";
 import Med_icon from '../assests/medical_logo.png';
 
-
 function Navbar({ handleLogout }) {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
 
   const handleLogoutClick = () => {
     handleLogout();
+  };
+
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log("Token:", token);
+      if (!token) {
+        setError("Token not found in localStorage");
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.get("http://localhost:5000/details", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Response data:", response.data);
+      setUserData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setError("Error fetching user details");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -21,16 +57,24 @@ function Navbar({ handleLogout }) {
             Medical App
           </span>
         </Link>
-        <div className="flex items-center">
-          <button onClick={() => setIsPopupOpen(true)} className="ml-4">
+        <div className="flex items-center relative">
+          <button onClick={toggleDropdown} className="ml-4">
             <img
               src={Profile_icon}
               alt="Profile"
               className="w-10 h-10 rounded-full shadow-md"
             />
           </button>
-          {isPopupOpen && <UserDetailsPopup />}{" "}
-          {/* Render UserDetailsPopup when isPopupOpen is true */}
+          {isDropdownOpen && userData && (
+            <div className="dropdown absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10">
+              <div className="p-2">
+                <h3 className="text-lg font-semibold mb-2">User Details</h3>
+                <p className="mb-1"><strong>Username:</strong> {userData.username}</p>
+                <p className="mb-1"><strong>Email:</strong> {userData.email}</p>
+                {/* Add more user details as needed */}
+              </div>
+            </div>
+          )}
           <Link
             to="/dbData"
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out"
