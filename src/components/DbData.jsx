@@ -7,6 +7,7 @@ import PrintComponent from "./PrintComponent";
 import Report from "./Report";
 import Foot from "./Foot";
 import { Link } from "react-router-dom";
+import GoBack from './Img/goBack.png'
 
 function DbData() {
    const [userData, setUserData] = useState([]);
@@ -49,7 +50,9 @@ function DbData() {
       <>
          <div className="container mx-auto px-4 py-8">
             <div className="flex items-center mb-8">
-               <Link to='/' className="text-blue-500 text-lg">&larr; Go Back</Link>
+               <Link to='/' className="text-blue-500 text-lg">
+                <img src={GoBack} alt="Go Back" className="h-12" />
+                </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                <div className="overflow-auto">
