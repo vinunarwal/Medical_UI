@@ -58,6 +58,19 @@ function Navbar({ handleLogout }) {
           </span>
         </Link>
         <div className="flex items-center relative">
+     
+          <Link
+            to="/dbData"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out"
+          >
+            View Records
+          </Link>
+          <button
+            onClick={handleLogoutClick}
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 ml-4 rounded-full shadow-md transition duration-300 ease-in-out"
+          >
+            Log Out
+          </button> 
           <button onClick={toggleDropdown} className="ml-4">
             <img
               src={Profile_icon}
@@ -75,18 +88,6 @@ function Navbar({ handleLogout }) {
               </div>
             </div>
           )}
-          <Link
-            to="/dbData"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition duration-300 ease-in-out"
-          >
-            View Records
-          </Link>
-          <button
-            onClick={handleLogoutClick}
-            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 ml-4 rounded-full shadow-md transition duration-300 ease-in-out"
-          >
-            Log Out
-          </button> 
         </div>
       </div>
     </nav>
