@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -7,21 +8,25 @@ import DbData from "./components/DbData";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <>
       <Routes>
         <Route path="/" element={<AllData />} />
-        <Route
-          path="/dbData"
+        <Route path="/dbData"
           element={
             <>
-              <Navbar />
+              <Navbar handleLogout={handleLogout} />
               <DbData />
             </>
           }
         />
       </Routes>
-      {/*<AllData />*/}
     </>
   );
 }

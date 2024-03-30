@@ -16,41 +16,41 @@ function Navbar({ handleLogout }) {
    const handleLogoutClick = () => {
       handleLogout();
       navigate("/");
-   };
+  };
 
-   const fetchUserData = async () => {
-      try {
-         const token = localStorage.getItem("token");
-         console.log("Token:", token);
-         if (!token) {
-            setError("Token not found in localStorage");
-            setLoading(false);
-            return;
-         }
-
-         const response = await axios.get("http://localhost:5000/details", {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-         });
-
-         console.log("Response data:", response.data);
-         setUserData(response.data);
-         setLoading(false);
-      } catch (error) {
-         console.error(error);
-         setError("Error fetching user details");
-         setLoading(false);
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log("Token:", token);
+      if (!token) {
+        setError("Token not found in localStorage");
+        setLoading(false);
+        return;
       }
-   };
 
-   useEffect(() => {
-      fetchUserData();
-   }, []);
+      const response = await axios.get("http://localhost:5000/details", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-   const toggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
-   };
+      console.log("Response data:", response.data);
+      setUserData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setError("Error fetching user details");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
 
    const handleEditUsername = async () => {
@@ -96,16 +96,14 @@ function Navbar({ handleLogout }) {
             }
             ));
    
-            // Show a message to inform the user to log in again with the new username
             Swal.fire({
                icon: 'success',
                title: 'Username Updated',
                text: response.data.message + '. Please log in again with your new username.',
                showConfirmButton: true,
-               allowOutsideClick: false // Prevents clicking outside to dismiss the message
+               allowOutsideClick: false 
             }).then((result) => {
                if (result.isConfirmed) {
-                  // Handle logout here
                   handleLogoutClick();
                }
             });
