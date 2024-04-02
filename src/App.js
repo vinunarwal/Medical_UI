@@ -1,21 +1,34 @@
-// import logo from './logo.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import PatientInfo from './components/PatientInfo';
-import Test from './components/Test';
-import Medi from './components/Medi';
+import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+
+import AllData from "./components/AllData";
+import { Routes, Route } from "react-router-dom";
+import DbData from "./components/DbData";
+import Navbar from "./components/Navbar";
 
 function App() {
-    return (
-        <div className="m-3 flex flex-row justify-around h-screen">
-            <div className='flex flex-column print-d-none'>
-            <PatientInfo/>
-            <Test/>
-            </div>
-                 
-            <Medi/>
-        </div>
-    );
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<AllData />} />
+        <Route path="/dbData"
+          element={
+            <>
+              <Navbar handleLogout={handleLogout} />
+              <DbData />
+            </>
+          }
+        />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

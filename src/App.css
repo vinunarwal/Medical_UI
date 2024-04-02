@@ -1,35 +1,21 @@
-/* .print-preview-button {
+.print-d-none,
+.nav_print,
+.dbdata,
+.hide_dbdata{
   @media print {
     display: none;
   }
 }
-.App{
-  display: flex;
-  justify-content: space-between;
+
+.login_bg{
+  background-image: url(./assests/medical3.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
 }
-
-.print-component {
-  display: none;
-
-  @media print {
-    display: table;
-
-    .table-footer>tr>td {
-      text-align: center;
-      background-color: grey;
-      color: white;
-    }
-  }
-}
-
-
-.value span{
-  padding-right: 5px;
-  font-weight: bold;
-} */
-
-.print-d-none{
-  @media print {
-    display: none;
-  }
+.home_bg{
+  background-image: url(./assests/homebg.avif);
+  background-size: cover;
+  background-repeat: no-repeat;
 }

@@ -5,6 +5,7 @@ const initialState = {
         {
         firstName: '',
         lastName: '',
+        patientName:'',
         dateOfBirth: '',
         age: '',
         gender: 'NA',
