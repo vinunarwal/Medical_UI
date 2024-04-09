@@ -10,7 +10,7 @@ function UserDetailsPopup() {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log("Token:", token); // Log the token to verify it
+      console.log("Token:", token); 
       if (!token) {
         setError("Token not found in localStorage");
         setLoading(false);
@@ -23,7 +23,7 @@ function UserDetailsPopup() {
         },
       });
 
-      console.log("Response data:", response.data); // Log the response data
+      console.log("Response data:", response.data); 
       setUserData(response.data);
       setLoading(false);
     } catch (error) {
@@ -34,7 +34,7 @@ function UserDetailsPopup() {
   };
 
   fetchUserData();
-}, []); // Fetch user data on component mount
+}, []); 
 
 
   return (
@@ -54,7 +54,6 @@ function UserDetailsPopup() {
                 <tr className="text-white">Email:</tr>
                 <td className="text-white">{userData.email}</td>
               </tr>
-              {/* Add more rows for other user details */}
             </tbody>
           </table>
         )}

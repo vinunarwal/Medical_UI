@@ -30,11 +30,10 @@ const Test = () => {
     refValue,
     category
   ) => {
-    // console.log("item index=>",item, testIndex, selectedTestIndex, refValue)
     const updatedResults = [...testResults];
 
     if (updatedResults) {
-      // console.log("updatedResults[selectedTestIndex]=>",updatedResults[selectedTestIndex]);
+
       updatedResults[selectedTestIndex] = {
         ...(updatedResults[selectedTestIndex]
           ? updatedResults[selectedTestIndex]
@@ -127,7 +126,7 @@ const Test = () => {
                               <input
                                 className="form-control"
                                 type="text"
-                                // testResults && testResults[selectedTestIndex] && testResults[selectedTestIndex][item?.testName]?.result
+                               
                                 value={result || ""}
                                 onChange={(e) =>
                                   handleTestResultChange(

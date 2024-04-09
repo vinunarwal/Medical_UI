@@ -45,7 +45,6 @@ const PrintComponent = ({ children }) => {
          <tbody>
             <tr>
                <td id="print-component" className='bg-white pt-4'>
-                  {/* Render data here */}
                   {children}
                </td>
             </tr>
